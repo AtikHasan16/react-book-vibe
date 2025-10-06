@@ -3,7 +3,6 @@ import { useLocation } from "react-router";
 import Container from "./Container";
 import { setDataToLocal } from "../Utility/AddToLocal";
 
-
 const BookDetails = () => {
   const location = useLocation();
   // console.log(location.state);
@@ -22,9 +21,11 @@ const BookDetails = () => {
   } = location.state;
 
   const handleRead = () => {
-    setDataToLocal(location.state);
+    setDataToLocal("readBook", location.state);
   };
-
+  const handleWishList = () => {
+    setDataToLocal("wishList", location.state);
+  };
   return (
     <div>
       <Container>
@@ -70,7 +71,10 @@ const BookDetails = () => {
                 >
                   Read
                 </button>
-                <button className="btn btn-lg bg-blue-500 text-white rounded-lg">
+                <button
+                  onClick={() => handleWishList()}
+                  className="btn btn-lg bg-blue-500 text-white rounded-lg"
+                >
                   Wishlist
                 </button>
               </div>

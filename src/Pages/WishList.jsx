@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListCard = ({ listBook }) => {
+const WishList = ({wBook}) => {
   const {
     // bookId,
     image,
@@ -10,10 +10,10 @@ const ListCard = ({ listBook }) => {
     rating,
     // tags,
     totalPages,
-  } = listBook;
+  } = wBook;
   return (
     <div>
-      <div className="card card-side shadow-xl hover:shadow-gray-400 font border-2  border-gray-300">
+      <div className="card card-side shadow-xl border-2  border-gray-300 hover:shadow-gray-400 transition-shadow font">
         <figure>
           <img className="w-40" src={image} alt="book" />
         </figure>
@@ -31,4 +31,4 @@ const ListCard = ({ listBook }) => {
   );
 };
 
-export default ListCard;
+export default WishList;

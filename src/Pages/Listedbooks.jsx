@@ -4,17 +4,24 @@ import "react-tabs/style/react-tabs.css";
 import { getDataFromLocal } from "../Utility/AddToLocal";
 import BookCard from "../Components/BookCard";
 import ListCard from "../Components/ListCard";
+import WishList from "./WishList";
 const ListedBooks = () => {
   const [listBook, setListBook] = useState([]);
-
+  const [wishList, setWishList] = useState([]);
   useEffect(() => {
-    const readBooks = (() => {
-      const storedData = getDataFromLocal();
-      return storedData;
+    const readList = (() => {
+      const getReadData = getDataFromLocal("readBook");
+      return getReadData;
     })();
-    setListBook(readBooks);
+    setListBook(readList);
+
+    const wishList = (() => {
+      const wishListData = getDataFromLocal("wishList");
+      return wishListData;
+    })();
+    setWishList(wishList);
   }, []);
-  // console.log(listBook);
+  console.log(wishList);
 
   return (
     <>
@@ -33,7 +40,11 @@ const ListedBooks = () => {
             </div>
           </TabPanel>
           <TabPanel>
-            <h2>Wishlist Books</h2>
+            <div className=" space-y-10  my-10">
+              {wishList.map((wBook) => (
+                <WishList wBook={wBook}></WishList>
+              ))}
+            </div>
           </TabPanel>
         </Tabs>
       </div>
