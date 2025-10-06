@@ -18,7 +18,13 @@ const setDataToLocal = (key, data) => {
     localStorage.setItem(key, wholeData);
   }
 };
-export { setDataToLocal, getDataFromLocal };
+
+const setUpdateToLocal = (key, bookId) => {
+  const existingData = getDataFromLocal(key);
+  const updatedData = existingData.filter((books) => books.bookId !== bookId);
+  localStorage.setItem(key, JSON.stringify(updatedData));
+};
+export { setDataToLocal, getDataFromLocal, setUpdateToLocal };
 // const getDataFromLocal = () => {
 //   const getDataFromLocal = localStorage.getItem("bookData");
 

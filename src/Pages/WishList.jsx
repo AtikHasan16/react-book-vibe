@@ -1,8 +1,8 @@
 import React from "react";
 
-const WishList = ({wBook}) => {
+const WishList = ({ wBook, removeFromList }) => {
   const {
-    // bookId,
+    bookId,
     image,
     bookName,
     author,
@@ -11,6 +11,10 @@ const WishList = ({wBook}) => {
     // tags,
     totalPages,
   } = wBook;
+
+  const handleRemove = () => {
+    removeFromList(bookId);
+  };
   return (
     <div>
       <div className="card card-side shadow-xl border-2  border-gray-300 hover:shadow-gray-400 transition-shadow font">
@@ -23,7 +27,9 @@ const WishList = ({wBook}) => {
           <p className="text-xl font-semibold">Pages : {totalPages}</p>
           <p className="text-xl font-semibold">Ratings : {rating}</p>
           <div className="card-actions justify-end">
-            <button className="btn btn-primary">Remove</button>
+            <button onClick={() => handleRemove()} className="btn btn-primary">
+              Remove
+            </button>
           </div>
         </div>
       </div>
