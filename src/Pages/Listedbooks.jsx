@@ -4,6 +4,7 @@ import "react-tabs/style/react-tabs.css";
 import { getDataFromLocal, setUpdateToLocal } from "../Utility/AddToLocal";
 import ListCard from "../Components/ListCard";
 import WishList from "./WishList";
+import Swal from "sweetalert2";
 
 const ListedBooks = () => {
   const [listBook, setListBook] = useState([]);
@@ -25,6 +26,23 @@ const ListedBooks = () => {
   }, []);
   // console.log(wishList);
   const handleSort = (type) => {
+    if (type === "Pages") {
+      const sortedByPage = [...listBook].sort(
+        (a, b) => a.totalPages - b.totalPages
+      );
+      const sortedByPageWish = [...wishList].sort(
+        (a, b) => a.totalPages - b.totalPages
+      );
+      setListBook(sortedByPage);
+      setWishList(sortedByPageWish);
+    } else if (type === "Rating") {
+      const sortedByRating = [...listBook].sort((a, b) => b.rating - a.rating);
+      const sortedByRatingWish = [...wishList].sort(
+        (a, b) => b.rating - a.rating
+      );
+      setListBook(sortedByRating);
+      setWishList(sortedByRatingWish);
+    }
     setSort(type);
   };
   // console.log();
@@ -34,11 +52,21 @@ const ListedBooks = () => {
     // console.log(getReadData);
     setUpdateToLocal("readBook", bookId);
     setListBook(removeReadCard);
+
+    Swal.fire({
+      title: "Book Removed Successfully",
+      icon: "success",
+    });
   };
   const removeFromWishList = (bookId) => {
     const removeWishCard = wishList.filter((book) => book.bookId !== bookId);
     setUpdateToLocal("wishList", bookId);
     setWishList(removeWishCard);
+
+    Swal.fire({
+      title: "Book Removed Successfully",
+      icon: "success",
+    });
   };
   return (
     <>

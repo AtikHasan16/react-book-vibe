@@ -1,3 +1,5 @@
+import Swal from "sweetalert2";
+
 const getDataFromLocal = (key) => {
   const getDataFromLocal = localStorage.getItem(key);
   return getDataFromLocal ? JSON.parse(getDataFromLocal) : [];
@@ -10,9 +12,15 @@ const setDataToLocal = (key, data) => {
   );
 
   if (matchedData) {
-    return alert(` Already exist in ${key}`);
+    Swal.fire({
+      title: `Already exist in ${key}`,
+      icon: "error",
+    });
   } else {
-    alert(`added to ${key}`);
+    Swal.fire({
+      title: `Successfully added to ${key}`,
+      icon: "success",
+    });
     existingData.push(data);
     const wholeData = JSON.stringify(existingData);
     localStorage.setItem(key, wholeData);
