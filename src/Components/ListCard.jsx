@@ -1,6 +1,6 @@
 import React from "react";
 
-const ListCard = ({ listBook, removeFromList }) => {
+const ListCard = ({ listBook, removeFromReadList }) => {
   const {
     bookId,
     image,
@@ -12,8 +12,8 @@ const ListCard = ({ listBook, removeFromList }) => {
     totalPages,
   } = listBook;
 
-  const handleRemove = () => {
-    removeFromList(bookId);
+  const handleReadRemove = () => {
+    removeFromReadList(bookId);
   };
   return (
     <div>
@@ -29,7 +29,7 @@ const ListCard = ({ listBook, removeFromList }) => {
           <div className="card-actions justify-end">
             <button
               onClick={() => {
-                handleRemove();
+                handleReadRemove();
               }}
               className="btn btn-primary"
             >

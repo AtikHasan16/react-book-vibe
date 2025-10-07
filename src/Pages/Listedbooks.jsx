@@ -29,17 +29,17 @@ const ListedBooks = () => {
   };
   // console.log();
 
-  const removeFromList = (bookId) => {
+  const removeFromReadList = (bookId) => {
     const removeReadCard = listBook.filter((book) => book.bookId !== bookId);
     // console.log(getReadData);
     setUpdateToLocal("readBook", bookId);
     setListBook(removeReadCard);
-
+  };
+  const removeFromWishList = (bookId) => {
     const removeWishCard = wishList.filter((book) => book.bookId !== bookId);
     setUpdateToLocal("wishList", bookId);
     setWishList(removeWishCard);
   };
-
   return (
     <>
       <div className="text-xl font-semibold text-gray-500 ">
@@ -72,7 +72,7 @@ const ListedBooks = () => {
               {listBook.map((listBook) => (
                 <ListCard
                   listBook={listBook}
-                  removeFromList={removeFromList}
+                  removeFromReadList={removeFromReadList}
                   key={listBook.bookId}
                 ></ListCard>
               ))}
@@ -82,8 +82,9 @@ const ListedBooks = () => {
             <div className=" space-y-10  my-10">
               {wishList.map((wBook) => (
                 <WishList
-                  removeFromList={removeFromList}
+                  removeFromWishList={removeFromWishList}
                   wBook={wBook}
+                  key={wBook.bookId}
                 ></WishList>
               ))}
             </div>
